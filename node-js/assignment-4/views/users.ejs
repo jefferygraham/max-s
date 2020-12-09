@@ -1,0 +1,16 @@
+<%- include('includes/head.ejs') %>
+
+  <%- include('includes/nav.ejs') %>
+
+  
+  <% if (users.length > 0) { %>
+    <h1>Users</h1>
+    <% users.forEach((user) => { %>
+      <p><%= user %></p>
+    <% }) %>
+  <% } else { %>
+    <h1>No Users Found!</h1>
+  <% } %>
+
+
+  <%- include('includes/footer.ejs') %>
