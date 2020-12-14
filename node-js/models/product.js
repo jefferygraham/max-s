@@ -15,6 +15,7 @@ class Product {
     const db = getDb();
     let dbOp;
     if (this._id) {
+      // Update the product
       dbOp = db
         .collection('products')
         .updateOne({ _id: this._id }, { $set: this });
@@ -22,10 +23,10 @@ class Product {
       dbOp = db.collection('products').insertOne(this);
     }
     return dbOp
-      .then((result) => {
+      .then(result => {
         console.log(result);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }
@@ -36,10 +37,11 @@ class Product {
       .collection('products')
       .find()
       .toArray()
-      .then((products) => {
+      .then(products => {
+        console.log(products);
         return products;
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }
@@ -50,11 +52,11 @@ class Product {
       .collection('products')
       .find({ _id: new mongodb.ObjectId(prodId) })
       .next()
-      .then((product) => {
+      .then(product => {
         console.log(product);
         return product;
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }
@@ -64,10 +66,10 @@ class Product {
     return db
       .collection('products')
       .deleteOne({ _id: new mongodb.ObjectId(prodId) })
-      .then((result) => {
+      .then(result => {
         console.log('Deleted');
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }
